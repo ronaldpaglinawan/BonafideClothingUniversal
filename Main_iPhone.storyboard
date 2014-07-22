@@ -205,7 +205,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="key" translatesAutoresizingMaskIntoConstraints="NO" id="Zju-Yg-OJO">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="present" translatesAutoresizingMaskIntoConstraints="NO" id="Zju-Yg-OJO">
                                             <rect key="frame" x="20" y="9" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
@@ -683,11 +683,11 @@
         <image name="fb" width="40" height="40"/>
         <image name="home" width="32" height="32"/>
         <image name="inst" width="40" height="40"/>
-        <image name="key" width="32" height="32"/>
         <image name="mens" width="212" height="222"/>
         <image name="menu-01" width="40" height="30"/>
         <image name="new_arrivals" width="212" height="222"/>
         <image name="pin" width="32" height="32"/>
+        <image name="present" width="32" height="32"/>
         <image name="star" width="32" height="32"/>
         <image name="tag" width="32" height="32"/>
         <image name="tumblr" width="40" height="40"/>

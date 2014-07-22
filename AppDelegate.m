@@ -29,6 +29,11 @@
 
     }
     
+    // Set the custom font for all labels and text views
+    UIFont *customFont = [UIFont fontWithName:@"Lato-Regular" size:15];
+    [[UILabel appearance] setFont:customFont];
+    [[UITextView appearance] setFont:customFont];
+    
     
     return YES;
 }

@@ -14,6 +14,7 @@
     NSTimer *timey;
 }
 
+// Public Outlets
 @property (weak, nonatomic) IBOutlet UIWebView *webSiteView;
 
 

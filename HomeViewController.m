@@ -11,7 +11,7 @@
 #import "PromoInfoView.h"
 #import "SWRevealViewController.h"
 
-#define FONT_SOHO_STD(s) [UIFont fontWithName:@"Lato-Regular" size:s]
+//#define FONT_SOHO_STD(s) [UIFont fontWithName:@"Lato-Regular" size:s]
 
 
 @interface HomeViewController ()
@@ -81,10 +81,6 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    
-    //_arrivalButton.titleLabel.font = [UIFont fontWithName:@"Lato-Regular" size:14];
-    //button.titleLabel.font = [UIFont fontWithName:FONT_NAME size:FONT_SIZE];
     
 }
 

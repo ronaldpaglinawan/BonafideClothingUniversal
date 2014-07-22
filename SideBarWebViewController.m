@@ -2,7 +2,7 @@
 //  SideBarWebViewController.m
 //  BonafideClothingUniversal
 //
-//  Created by Bonafide Infotech Inc. on 7/21/14.
+//  Created by Ronald F. Paglinawan on 7/21/14.
 //  Copyright (c) 2014 Bonafideinfotech Inc. All rights reserved.
 //
 
@@ -10,7 +10,9 @@
 #import "SWRevealViewController.h"
 
 @interface SideBarWebViewController ()
-
+{
+    UIActivityIndicatorView *progressIndicator;
+}
 @end
 
 @implementation SideBarWebViewController
@@ -28,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_webView reload];
     
     // Change the color of Sidebar
     _sidebarButton.tintColor = [UIColor whiteColor];
@@ -46,12 +49,34 @@
     
     // load the website url
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_sideBarWebString]]];
+    
+    // initialize the activity indicator
+    progressIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIBarButtonItem *itemIndicator = [[UIBarButtonItem alloc] initWithCustomView:progressIndicator];
+    [self.navigationItem setRightBarButtonItem:itemIndicator];
+    [progressIndicator startAnimating];
+    
+    // set the timer
+    timey = [NSTimer scheduledTimerWithTimeInterval:(1.0/2.0) target:self selector:@selector(loading) userInfo:Nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)loading
+{
+    if (!_webView.loading)
+    {
+        [progressIndicator stopAnimating];
+    }
+    
+    else
+    {
+        [progressIndicator startAnimating];
+    }
 }
 
 /*
