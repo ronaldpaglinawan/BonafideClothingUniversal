@@ -13,7 +13,7 @@
 
 
 
-@class PromoInfoView, MenuView;
+@class PromoInfoView;
 
 @interface HomeViewController : UIViewController <SlideShowDelegate, MFMailComposeViewControllerDelegate>
 {

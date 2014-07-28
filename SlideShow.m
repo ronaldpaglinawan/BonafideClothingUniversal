@@ -144,12 +144,6 @@ typedef NS_ENUM(NSInteger,  SlideShowSlideMode)
 {
     if(! _isAnimating && ([self.images count] >1 || self.dataSource))
     {
-        /* // temporary commented
-        if ([self.delegate respondsToSelector:@selector( SlideShowWillShowNext:)])
-        {
-            [self.delegate  SlideShowWillShowNext:self];
-        }
-        */
         
         // Next Image
         if (self.dataSource)
@@ -178,13 +172,7 @@ typedef NS_ENUM(NSInteger,  SlideShowSlideMode)
                 break;
                 
         }
-        /*// temporary commented
-        // Call delegate
-        if([delegate respondsToSelector:@selector( SlideShowDidNext:)])
-        {
-            [delegate  SlideShowDidNext:self];
-        }
-        */
+
     }
 }
 

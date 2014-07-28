@@ -33,12 +33,6 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.view.backgroundColor = [UIColor blackColor];
     self.tableView.backgroundColor = [UIColor blackColor];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.5f alpha:.5f];
@@ -81,44 +75,6 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
@@ -131,16 +87,7 @@
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
     destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
     
-    /*
-    // Set the url if it navigates to the SideBarWebViewController
-    if ([segue.identifier isEqualToString:@"showPhoto"])
-    {
-        SideBarWebViewController *webController = (SideBarWebViewController*)segue.destinationViewController;
-        NSString *photoFilename = [NSString stringWithFormat:@"%@_photo.jpg", [_menuItems objectAtIndex:indexPath.row]];
-        //webController.photoFilename = photoFilename;
-    }
-    */
-    
+
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
     {
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
@@ -155,7 +102,6 @@
     }
     
     
-    // trial
     if ([segue.identifier isEqualToString:@"showNewArrivalsPage"])
     {
         // Open sideBarWebSiteViewController:

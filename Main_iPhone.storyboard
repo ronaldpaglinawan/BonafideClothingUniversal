@@ -360,11 +360,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uZj-TJ-F2n">
-                                        <rect key="frame" x="0.0" y="1" width="320" height="130"/>
+                                        <rect key="frame" x="0.0" y="1" width="320" height="217"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="130" id="dyM-Yl-xsz"/>
-                                        </constraints>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -375,9 +372,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.70295211980000005" green="1" blue="0.62412424929999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="uZj-TJ-F2n" secondAttribute="trailing" id="2Wh-C2-VRn"/>
-                                    <constraint firstItem="uZj-TJ-F2n" firstAttribute="leading" secondItem="JZA-I2-kyQ" secondAttribute="leading" id="Rkb-cG-1oN"/>
-                                    <constraint firstItem="uZj-TJ-F2n" firstAttribute="top" secondItem="JZA-I2-kyQ" secondAttribute="top" constant="1" id="T01-ae-haP"/>
+                                    <constraint firstAttribute="bottom" secondItem="uZj-TJ-F2n" secondAttribute="bottom" id="7Pv-rW-UZj"/>
+                                    <constraint firstItem="uZj-TJ-F2n" firstAttribute="leading" secondItem="JZA-I2-kyQ" secondAttribute="leading" id="Teb-hO-jBR"/>
+                                    <constraint firstItem="uZj-TJ-F2n" firstAttribute="top" secondItem="JZA-I2-kyQ" secondAttribute="top" constant="1" id="sXa-ma-mCJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="uZj-TJ-F2n" secondAttribute="trailing" id="xl8-8J-7DI"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOP-SN-J17">
@@ -700,8 +698,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="JRi-LT-iyt"/>
-        <segue reference="7vO-it-ned"/>
         <segue reference="wY8-MI-sr1"/>
+        <segue reference="JRi-LT-iyt"/>
+        <segue reference="teQ-Gb-yM1"/>
     </inferredMetricsTieBreakers>
 </document>

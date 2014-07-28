@@ -11,7 +11,6 @@
 #import "PromoInfoView.h"
 #import "SWRevealViewController.h"
 
-//#define FONT_SOHO_STD(s) [UIFont fontWithName:@"Lato-Regular" size:s]
 
 
 @interface HomeViewController ()
@@ -40,16 +39,13 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = YES;
     
-    // set the status bar to light color
-    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
     // initialize the slide show
     _slideshow.delegate = self;
     [_slideshow setDelay:1]; // Delay between transitions
     [_slideshow setTransitionDuration:.5]; // Transition duration
     [_slideshow setTransitionType:SlideShowTransitionFade]; // Choose a transition type (fade or slide)
     [_slideshow setImagesContentMode:UIViewContentModeScaleAspectFill]; // Choose a content mode for images to display
-    [_slideshow addImagesFromResources:@[@"test_1.jpeg",@"test_2.jpeg",@"test_3.jpeg"]]; // Add images from resources
+    [_slideshow addImagesFromResources:@[@"iPhonePromo1",@"iPhonePromo2",@"iPhonePromo3"]]; // Add images from resources
     
     // set static data of promoTitleArray
     promoTitleArray = @[@"Promo Title 1", @"Promo Title 2", @"Promo Title 3"];
@@ -100,7 +96,6 @@
 - (IBAction)SlideShowStopButtonClicked:(id)sender
 {
     [_slideshow stop];
-   // NSLog(@"current index : %d",_slideshow.currentIndex);
     
     self.promoTitleLabel.text = promoTitleArray[_slideshow.currentIndex];
     _detailsTextView.text = promoDetailsArray[_slideshow.currentIndex];

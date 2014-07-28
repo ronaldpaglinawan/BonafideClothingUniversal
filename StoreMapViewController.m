@@ -94,11 +94,8 @@ static int kMapIndex = 0;
             MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:myIdentifier];
             annotationView.canShowCallout = YES;
             
-            //UIImage *flagImage = [UIImage imageNamed:@"apple logo.png"];
-            
             CGRect resizeRect;
             
-            //resizeRect.size = flagImage.size;
             CGSize maxSize = CGRectInset(self.view.bounds,
                                          [StoreMapViewController annotationPadding],
                                          [StoreMapViewController annotationPadding]).size;
@@ -112,15 +109,12 @@ static int kMapIndex = 0;
             
             resizeRect.origin = (CGPoint){0.0f, 0.0f};
             UIGraphicsBeginImageContext(resizeRect.size);
-            //[flagImage drawInRect:resizeRect];
             UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
             
             annotationView.image = resizedImage;
             annotationView.opaque = NO;
             
-            //UIImageView *IconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"apple logo.png"]];
-            //annotationView.leftCalloutAccessoryView = IconView;
             
             return annotationView;
         }
@@ -135,17 +129,5 @@ static int kMapIndex = 0;
     
     return nil;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

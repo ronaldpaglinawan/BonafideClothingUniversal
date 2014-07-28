@@ -10,8 +10,10 @@
 
 #import "DetailViewController.h"
 
-@interface MasterViewController () {
+@interface MasterViewController ()
+{
     NSMutableArray *_objects;
+    NSString *itemName;
 }
 @end
 
@@ -19,7 +21,8 @@
 
 - (void)awakeFromNib
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
         self.clearsSelectionOnViewWillAppear = NO;
         self.preferredContentSize = CGSizeMake(320.0, 600.0);
     }
@@ -29,12 +32,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    
+    [self createMemberData];
+    
+    // set the navigation bar properties
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_image"]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    
+    // set the status bar to light color
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // set tableView's alpha
+    self.tableView.alpha = 0.88;
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,15 +57,52 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+- (void)createMemberData
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+	NSMutableArray *sideBarItems;
+	
+	sideBarItems = [[NSMutableArray alloc] init];
+    
+	
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"HOME", @"name",
+                             @"home", @"picture", @"http://bnfde.com?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"NEW ARRIVALS", @"name",
+                            @"star", @"picture", @"http://bnfde.com/collections/new-arrivals?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"BRANDS", @"name",
+                            @"tag", @"picture", @"http://bnfde.com/pages/brand-portfolio?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"MENS", @"name",
+                            @"briefcase", @"picture", @"http://bnfde.com/collections/all-product?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"COLLECTIONS", @"name",
+                            @"present", @"picture", @"http://bnfde.com/pages/bnfde-collection?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"CART", @"name",
+                            @"cart", @"picture", @"http://bnfde.com/cart", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"STORE LOCATOR", @"name",
+                            @"pin", @"picture", @"http://bnfde.com?", @"url", nil]];
+    
+    [sideBarItems addObject:[[NSDictionary alloc]
+                            initWithObjectsAndKeys:@"OFFICIAL WEBSITE", @"name",
+                            @"world", @"picture", @"http://bnfde.com?", @"url", nil]];
+    
+    
+	self.memberData = @[sideBarItems];
+    
 }
+
+
 
 #pragma mark - Table View
 
@@ -62,65 +113,58 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return [[self.memberData objectAtIndex:section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideBarCell" forIndexPath:indexPath];
 
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    cell.textLabel.text=[[[self.memberData objectAtIndex:indexPath.section]
+                          objectAtIndex: indexPath.row] objectForKey:@"name"];
+    
+    UIImage *memberImage;
+    memberImage = [UIImage imageNamed:
+                  [[[self.memberData objectAtIndex:indexPath.section] objectAtIndex: indexPath.row] objectForKey:@"picture"]];
+    
+    cell.imageView.image = memberImage;
+    
+    cell.contentView.backgroundColor = [UIColor blackColor];
+    cell.backgroundColor = [UIColor blackColor];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = _objects[indexPath.row];
-        self.detailViewController.detailItem = object;
-    }
+    
+    self.detailViewController.detailItem = [[_memberData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+
+    
+    // set the itemName to chosen item name in sidebar
+    itemName = [[[self.memberData objectAtIndex:indexPath.section] objectAtIndex: indexPath.row] objectForKey:@"name"];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    if ([[segue identifier] isEqualToString:@"showDetail"])
+    {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = _objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
+    
+    
+    else if ([[segue identifier] isEqualToString:@"showDetail"] && [itemName isEqualToString:@"STORE LOCATOR"])
+    {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSDate *object = _objects[indexPath.row];
+        [[segue destinationViewController] setDetailItem:object];
+    }
+    
 }
 
 @end
